@@ -1,0 +1,129 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+
+  // NOTE: Model names below must match your opencode provider config.
+  // If your provider requires a prefix (e.g. "openai-compatible/GLM-4.7"),
+  // adjust the model strings accordingly.
+
+  "agents": {
+    // ── Tier 1: Master Orchestrators ────────────────────────────────
+
+    // Primary orchestrator — needs the strongest reasoning model available.
+    // Kimi-K2.5-thinking provides deep chain-of-thought for complex
+    // multi-agent coordination and decision-making.
+    "sisyphus": {
+      "model": "Kimi-K2.5-thinking",
+      "temperature": 0.1
+    },
+
+    // Todo-list orchestrator — high-level routing and coordination.
+    // GLM-4.7-thinking gives solid reasoning for task prioritization
+    // without competing for the same model as Sisyphus.
+    "atlas": {
+      "model": "GLM-4.7-thinking",
+      "temperature": 0.1
+    },
+
+    // ── Tier 2: Planning Agents (The Planning Triad) ────────────────
+
+    // Strategic planner — conducts structured interview/consultant
+    // planning sessions. Needs deep reasoning for multi-step plans.
+    "prometheus": {
+      "model": "Kimi-K2.5-thinking",
+      "temperature": 0.1
+    },
+
+    // Pre-planning gap analysis — runs before Prometheus to detect
+    // blind spots. Slightly higher temperature for exploratory analysis.
+    "metis": {
+      "model": "GLM-4.7-thinking",
+      "temperature": 0.3
+    },
+
+    // Plan validator — "ruthless fault-finding" reviewer.
+    // GPT-OSS-120B's large parameter count gives it breadth to catch
+    // subtle issues. Low temperature for consistent, rigorous review.
+    "momus": {
+      "model": "GPT-OSS-120B",
+      "temperature": 0.1
+    },
+
+    // Autonomous deep worker — independent technical implementation.
+    // GPT-OSS-120B handles sustained, complex coding autonomously.
+    "hephaestus": {
+      "model": "GPT-OSS-120B",
+      "temperature": 0.1
+    },
+
+    // Strategic debugging advisor (read-only).
+    // GLM-4.7-thinking's reasoning is well-suited for diagnostic analysis
+    // without needing write access.
+    "oracle": {
+      "model": "GLM-4.7-thinking",
+      "temperature": 0.1
+    },
+
+    // ── Tier 3: Execution & Specialist Agents ───────────────────────
+
+    // Delegated task executor — handles work dispatched by higher tiers.
+    // Kimi-K2.5 (non-thinking) provides fast, capable code generation
+    // without the overhead of reasoning chains.
+    "sisyphus-junior": {
+      "model": "Kimi-K2.5",
+      "temperature": 0.1
+    },
+
+    // Multi-repository research agent (read-only).
+    // GLM-4.7 is fast and has strong comprehension for searching
+    // docs, GitHub repos, and remote codebases.
+    "librarian": {
+      "model": "GLM-4.7",
+      "temperature": 0.1
+    },
+
+    // Fast contextual search agent (read-only).
+    // GLM-4.7 keeps searches snappy without consuming heavier models.
+    "explore": {
+      "model": "GLM-4.7",
+      "temperature": 0.1
+    },
+
+    // PDF and image analysis (read-only).
+    // Qwen3-VL is the only vision-language model available —
+    // essential for any multimodal analysis tasks.
+    "multimodal-looker": {
+      "model": "Qwen3-VL-235B-A22B-Instruct",
+      "temperature": 0.1
+    }
+  },
+
+  // ── Task Category Routing ───────────────────────────────────────
+  // When agents delegate work via the `task` tool, the category
+  // determines which model handles it.
+
+  "categories": {
+    // Frontend/UI tasks — VL model understands visual layouts
+    "visual-engineering": { "model": "Qwen3-VL-235B-A22B-Instruct" },
+
+    // Complex reasoning tasks — strongest thinking model
+    "ultrabrain": { "model": "Kimi-K2.5-thinking" },
+
+    // Architecture and design — deep structured reasoning
+    "deep": { "model": "GLM-4.7-thinking" },
+
+    // Creative tasks — multimodal model for aesthetic awareness
+    "artistry": { "model": "Qwen3-VL-235B-A22B-Instruct" },
+
+    // Fast, lightweight tasks — plain GLM for speed
+    "quick": { "model": "GLM-4.7" },
+
+    // Budget fallback — lightweight general model
+    "unspecified-low": { "model": "GLM-4.7" },
+
+    // Premium fallback — best reasoning model
+    "unspecified-high": { "model": "Kimi-K2.5-thinking" },
+
+    // Documentation and prose — large model for fluent writing
+    "writing": { "model": "GPT-OSS-120B" }
+  }
+}
