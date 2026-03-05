@@ -13,6 +13,8 @@ opt.autoindent = true -- copy indent from current line when starting new one
 
 opt.wrap = false
 
+opt.scrolloff = 999 -- keep cursor centered vertically
+
 -- search settings
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
@@ -43,3 +45,12 @@ opt.foldcolumn = "1"
 opt.foldlevel = 99
 opt.foldlevelstart = 99
 opt.foldenable = true
+
+-- Helm filetype detection: treat files inside templates/ as helm, not yaml.
+-- Without this, yamlls/yamllint/prettier run on Go-template files and error.
+vim.filetype.add({
+	pattern = {
+		[".*/templates/.*%.yaml"] = "helm",
+		[".*/templates/.*%.tpl"] = "helm",
+	},
+})

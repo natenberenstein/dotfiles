@@ -32,6 +32,10 @@ return {
 				"js-debug-adapter", -- JS/TS debug adapter
 				"debugpy", -- Python debug adapter
 				"delve", -- Go debug adapter
+				"json-lsp",
+				"yaml-language-server",
+				"helm-ls",
+				"yamllint",
 			},
 		})
 	end,

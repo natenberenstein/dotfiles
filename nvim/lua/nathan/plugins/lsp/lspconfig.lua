@@ -20,19 +20,27 @@ return {
 
 				-- set keybinds
 				opts.desc = "Show LSP references"
-				keymap.set("n", "gR", function() Snacks.picker.lsp_references() end, opts)
+				keymap.set("n", "gR", function()
+					Snacks.picker.lsp_references()
+				end, opts)
 
 				opts.desc = "Go to declaration"
 				keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
 
 				opts.desc = "Show LSP definitions"
-				keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, opts)
+				keymap.set("n", "gd", function()
+					Snacks.picker.lsp_definitions()
+				end, opts)
 
 				opts.desc = "Show LSP implementations"
-				keymap.set("n", "gi", function() Snacks.picker.lsp_implementations() end, opts)
+				keymap.set("n", "gi", function()
+					Snacks.picker.lsp_implementations()
+				end, opts)
 
 				opts.desc = "Show LSP type definitions"
-				keymap.set("n", "gt", function() Snacks.picker.lsp_type_definitions() end, opts)
+				keymap.set("n", "gt", function()
+					Snacks.picker.lsp_type_definitions()
+				end, opts)
 
 				opts.desc = "See available code actions"
 				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
@@ -41,7 +49,9 @@ return {
 				keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
 
 				opts.desc = "Show buffer diagnostics"
-				keymap.set("n", "<leader>D", function() Snacks.picker.diagnostics_buffer() end, opts)
+				keymap.set("n", "<leader>D", function()
+					Snacks.picker.diagnostics_buffer()
+				end, opts)
 
 				opts.desc = "Show line diagnostics"
 				keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
@@ -100,6 +110,30 @@ return {
 
 		vim.lsp.config("eslint", {
 			filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte" },
+		})
+		vim.lsp.config("jsonls", {
+			settings = {
+				json = {
+					validate = { enable = true },
+				},
+			},
+		})
+
+		vim.lsp.config("yamlls", {
+			settings = {
+				yaml = {
+					validate = true,
+					schemaStore = { enable = true },
+				},
+			},
+		})
+
+		vim.lsp.config("helm_ls", {
+			settings = {
+				["helm-ls"] = {
+					yamlls = { path = "yaml-language-server" },
+				},
+			},
 		})
 
 		vim.lsp.config("lua_ls", {
