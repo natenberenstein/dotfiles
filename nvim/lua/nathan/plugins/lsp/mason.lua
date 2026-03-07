@@ -36,6 +36,11 @@ return {
 				"yaml-language-server",
 				"helm-ls",
 				"yamllint",
+				"goimports", -- Go formatter
+				"typescript-language-server", -- TypeScript LSP
+				"gopls", -- Go LSP
+				"pyright", -- Python LSP
+				"dockerfile-language-server", -- Dockerfile LSP
 			},
 		})
 	end,

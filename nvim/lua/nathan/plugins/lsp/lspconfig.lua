@@ -2,14 +2,11 @@ return {
 	"neovim/nvim-lspconfig",
 	event = { "BufReadPre", "BufNewFile" },
 	dependencies = {
-		"hrsh7th/cmp-nvim-lsp",
+		"saghen/blink.cmp",
 		{ "antosha417/nvim-lsp-file-operations", config = true },
-		{ "folke/neodev.nvim", opts = {} },
+		{ "folke/lazydev.nvim", ft = "lua", opts = {} },
 	},
 	config = function()
-		-- import cmp-nvim-lsp plugin
-		local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
 		local keymap = vim.keymap -- for conciseness
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
@@ -71,7 +68,7 @@ return {
 		})
 
 		-- used to enable autocompletion (assign to every lsp server config)
-		local capabilities = cmp_nvim_lsp.default_capabilities()
+		local capabilities = require("blink.cmp").get_lsp_capabilities()
 
 		vim.diagnostic.config({
 			signs = {
@@ -149,5 +146,32 @@ return {
 				},
 			},
 		})
+
+		vim.lsp.config("ts_ls", {
+			filetypes = { "typescript", "javascript", "typescriptreact", "javascriptreact" },
+		})
+
+		vim.lsp.config("gopls", {
+			settings = {
+				gopls = {
+					analyses = {
+						unusedparams = true,
+					},
+					staticcheck = true,
+				},
+			},
+		})
+
+		vim.lsp.config("pyright", {
+			settings = {
+				python = {
+					analysis = {
+						typeCheckingMode = "basic",
+					},
+				},
+			},
+		})
+
+		vim.lsp.config("dockerls", {})
 	end,
 }

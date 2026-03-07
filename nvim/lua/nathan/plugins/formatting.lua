@@ -18,6 +18,7 @@ return {
 				markdown = { "prettier" },
 				graphql = { "prettier" },
 				liquid = { "prettier" },
+				go = { "goimports", "gofmt" },
 				lua = { "stylua" },
 				python = { "black" },
 			},
