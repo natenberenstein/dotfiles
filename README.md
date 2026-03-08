@@ -59,6 +59,7 @@ Key customizations on top of the Ubuntu default:
 | Node versions | `nvm` |
 | Python tooling | `uv` (with shell completion) |
 | Neovim binary | `/opt/nvim-linux-x86_64/bin` on PATH |
+| direnv | `eval "$(direnv hook bash)"` |
 | ROS | `colcon_cd`, `ROS_DOMAIN_ID=0` |
 
 ### Neovim (`nvim/`)
@@ -118,4 +119,6 @@ Documented and reinstallable via `scripts/install-tools.sh`.
 | [fd](https://github.com/sharkdp/fd) | Faster `find` | `apt` / `cargo` |
 | [btop](https://github.com/aristocratos/btop) | System monitor | `apt` / `snap` |
 | [yq](https://github.com/mikefarah/yq) | YAML/JSON processor | `uv tool install yq` |
+| [direnv](https://direnv.net) | Per-directory env vars | `curl direnv.net/install.sh` |
+| [xh](https://github.com/ducaale/xh) | Modern HTTP client (httpie-compatible) | GitHub release binary |
 | [Neovim](https://neovim.io) | Editor | GitHub release tarball → `/opt/` |

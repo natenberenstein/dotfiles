@@ -146,3 +146,6 @@ eval "$(uv generate-shell-completion bash)"
 eval "$(zoxide init bash)"
 
 alias cat="bat"
+
+# direnv
+eval "$(direnv hook bash)"

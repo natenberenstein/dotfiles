@@ -234,6 +234,44 @@ starship explain            # Explain current prompt modules
 starship timings            # Show module render times
 ```
 
+## direnv - Per-directory environment variables
+
+```bash
+# Create a .envrc in any project directory
+echo 'export DATABASE_URL=postgres://localhost/mydb' > .envrc
+direnv allow                    # Trust and load the .envrc
+direnv deny                     # Block an .envrc from loading
+direnv edit .                   # Open .envrc in $EDITOR and allow on save
+direnv status                   # Show current direnv state
+direnv reload                   # Force reload current .envrc
+
+# Common .envrc patterns
+# layout python                 # Auto-create/activate a virtualenv
+# dotenv                        # Load a .env file
+# use nix                       # Load a Nix environment
+# PATH_add bin                  # Add ./bin to PATH
+# source_env ../.envrc          # Inherit parent .envrc
+```
+
+## xh - Modern HTTP client (httpie-compatible)
+
+```bash
+xh httpbin.org/get              # Simple GET request
+xh POST httpbin.org/post key=value  # POST JSON data
+xh PUT api.example.com/item name=foo  # PUT JSON data
+xh -f POST httpbin.org/post key=value  # POST form data
+xh httpbin.org/get q==search    # Query string parameter
+xh httpbin.org/headers X-Custom:value  # Custom header
+xh -d https://example.com/file.zip  # Download a file
+xh -b httpbin.org/get           # Print only response body
+xh -h httpbin.org/get           # Print only response headers
+xh -v httpbin.org/get           # Verbose (request + response)
+xh --json httpbin.org/post < data.json  # Send JSON from stdin
+xh -A bearer -a token123 api.example.com  # Bearer auth
+xh -a user:pass httpbin.org/basic-auth/user/pass  # Basic auth
+xh --offline POST api.example.com key=value  # Preview request without sending
+```
+
 ## Useful Combinations
 
 ```bash

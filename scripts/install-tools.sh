@@ -63,6 +63,17 @@ sudo apt-get install -y btop 2>/dev/null || snap install btop
 uv tool install yq
 # Or: sudo snap install yq
 
+# ── direnv (per-directory environment variables) ──────────────────────────
+curl -sfL https://direnv.net/install.sh | bin_path=~/.local/bin bash
+# Add to shell via .bashrc: eval "$(direnv hook bash)"
+
+# ── xh (modern HTTP client, httpie-compatible) ────────────────────────────
+XH_VERSION="0.25.3"  # update as needed
+curl -sLo /tmp/xh.tar.gz "https://github.com/ducaale/xh/releases/download/v${XH_VERSION}/xh-v${XH_VERSION}-x86_64-unknown-linux-musl.tar.gz"
+tar xzf /tmp/xh.tar.gz -C /tmp
+install -m 755 "/tmp/xh-v${XH_VERSION}-x86_64-unknown-linux-musl/xh" ~/.local/bin/xh
+rm -rf /tmp/xh.tar.gz "/tmp/xh-v${XH_VERSION}-x86_64-unknown-linux-musl"
+
 # ── Neovim (latest stable AppImage / binary release) ────────────────────────
 NVIM_VERSION="v0.11.0"  # update as needed
 sudo mkdir -p /opt
